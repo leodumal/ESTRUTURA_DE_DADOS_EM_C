@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "pilhafuncoes.h"
+#include "arvorefuncoes.h"
+#include "filafuncoes.h"
+int main(){
+    int opcao, dado, valor;
+    int opcaoFila, opcaoPilha, opcaoArvore;
+    nopilha *PILHA = (nopilha *) malloc(sizeof(nopilha));
+    PILHA-> prox = NULL;
+    int tam = 0;
+    nodeF *FILA = (nodeF*) malloc(sizeof(struct NodeF));
+    FILA->prox = NULL;
+    ArVB arv;
+    arv.raiz = NULL;
+    Arvore *raiz = NULL;
+    printf("1 - Executar Pilha\n");
+    printf("2 - Executar Fila\n");
+    printf("3 - Executar Árvore\n");
+    printf("Opção: ");
+    scanf("%d", &opcao);
+    switch(opcao){
+        do{
+        case 1:
+            printf("1 - Empilhar\n");
+            printf("2 - Desempilhar\n");
+            printf("3. Imprimir Pilha\n");
+            printf("4. Limpar Pilha\n");
+            printf("5. Imprimir Topo da Pilha\n");
+            printf("0. Voltar\n");
+            printf("Opção: ");
+            scanf("%d", &opcaoPilha);
+            switch(opcaoPilha){
+                case 1:
+                
+                    Empilhar(PILHA,tam);
+                    break;
+                case 2:
+                    DESEMPILHAR(PILHA,tam);
+                    break;
+                case 3:
+                    IMPRIMIR(PILHA,tam);
+                    break;
+                case 4:
+                    LimparPilha(PILHA);
+                    break;
+                case 5:
+                    imprimirTopo(PILHA);
+                    break;
+                case 0:
+                    break;
+                default:
+                    printf("Opção inválida!\n");
+                    break;
+            }
+    }while(opcaoPilha != 0);
+    break;
+        case 2:
+        do{
+             printf("1 - Emfileirar\n");
+            printf("2 - Desemfileirar\n");
+            printf("3. Imprimir Fila\n");
+            printf("4. Limpar Fila\n");
+            printf("5. Imprimir Maior elemento da Fila\n");
+            printf("6. Imprimir Menor elemento da Fila\n");
+            printf("0. Voltar\n");
+            printf("Opção: ");
+            scanf("%d", &opcaoFila);
+            switch(opcaoFila){
+            case 1:
+            ENQUEUE(FILA,tam);
+            break;
+            case 2:
+            DEQUEUE(FILA,tam);
+            break;
+            case 3:
+            IMPRIME(FILA,tam);
+            break;
+            case 4:
+            LimparFila(FILA);
+            break;
+            case 5:
+            imprimirMaiorElemento(FILA);
+            break;
+            case 6:
+            imprimirMenorElemento(FILA);
+            break;
+            } 
+        }while(opcaoFila != 0);
+        break;
+        case 3:
+        do{
+             printf("\n1 - escrever elemento \n");
+            printf("2 - Imprimir Arvore \n");
+            printf("3. Imprimir Arvore da Direita para a Esquerda \n");
+            printf("4. Deletar Elemento \n");
+            printf("5. Imprimir Maior elemento da Arvore \n");
+            printf("6. Buscar Elemento \n");
+            printf("0. Voltar \n");
+            printf("Opção: ");
+            scanf("%d", &opcaoArvore);
+            switch(opcaoArvore){
+                case 1:
+                printf("\nDigite o valor a ser inserido: ");
+                scanf("%d", &valor);
+                raiz = inserir(raiz, valor);
+                break;
+                case 2:
+                printf("\nÁrvore em ordem crescente:\n");
+                imprime(raiz);
+                break;
+                case 3:
+                printf("\nÁrvore da direita para a esquerda:\n");
+                imprimeDaDireita(raiz);
+                break;
+                case 4:
+                printf("\nDigite o valor a ser removido: ");
+                scanf("%d", &valor);
+                raiz = remover(raiz, valor);
+                break;
+                case 5:
+                encontrarMaiorElemento(raiz);
+                break;
+                case 6:
+                buscar(raiz);
+                break;
+            }
+        }while(opcaoArvore != 0);
+        break;
+        default:
+        break;
+    }
+}
